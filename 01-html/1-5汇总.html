@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+<!-- 声明 HTML5 文档，告诉浏览器使用标准模式解析页面。 -->
+
+<html lang="zh-CN">
+<!-- html 是根元素；lang 表示网页主要语言，zh-CN 为简体中文。 -->
+
+<head>
+    <!-- head 存放网页元信息，通常不直接显示在网页正文中。 -->
+    <meta charset="UTF-8">
+    <!-- UTF-8 是字符编码方式，避免中文等字符出现乱码。 -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- viewport 控制移动端视口；width=device-width 表示视口宽度等于设备宽度。 -->
+
+    <title>HTML 学习笔记</title>
+    <!-- title 控制浏览器标签页的标题，与 HTML 文件名无关。 -->
+
+    <!-- style 标签内部使用 CSS 语法，负责控制元素的视觉样式。 -->
+    <style>
+        /* 使用 CSS 为表格添加边框，而不是使用已过时的 HTML border 属性。 */
+        .demo-table {
+            border-collapse: collapse;
+        }
+
+        .demo-table th,
+        .demo-table td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+    body：网页主体，存放标题、段落、图片、表格、表单等内容。
+    HTML 负责结构，CSS 负责样式，JavaScript 负责交互逻辑。
+    -->
+
+    <!-- ========== 一、HTML 标题与注释 ========== -->
+
+    <!-- HTML 只有 h1~h6 六级标题，级数越大，默认字号越小。 -->
+    <h1>一级标题标签</h1>
+    <h2>二级标题标签</h2>
+    <h3>三级标题标签</h3>
+    <h4>四级标题标签</h4>
+    <h5>五级标题标签</h5>
+    <h6>六级标题标签</h6>
+
+    <!-- h7 不是标准 HTML 标题元素，会被解析为未知 HTML 元素，没有标题语义和默认标题样式。 -->
+    <h7>七级标题标签</h7>
+
+    <!-- &lt; 和 &gt; 是 HTML 字符实体，用于显示 < 和 >，避免被当作标签语法解析。 -->
+    <p>HTML 注释格式：&lt;!-- 注释内容 --&gt;</p>
+
+
+    <!-- ========== 二、文本与行内元素 ========== -->
+
+    <!--
+    b / i：视觉上的加粗、倾斜；表达语义上的重要性和强调时优先使用 strong / em。
+    u：下划线；s：删除线；sub：下标；sup：上标。
+    -->
+    <p>
+        更改文本样式：
+        <b>字体加粗</b>，
+        <i>字体倾斜</i>，
+        <u>字体下划线</u>，
+        <s>字体删除线</s>，
+        <sub>下标</sub>，
+        <sup>上标</sup>
+    </p>
+
+    <!-- br 表示换行；hr 表示主题分隔线，不只是视觉上的横线。 -->
+    <p>第一行文字<br>第二行文字</p>
+    <hr>
+
+
+    <!-- ========== 三、列表 ========== -->
+
+    <!-- ul：无序列表；ol：有序列表；li：列表项。 -->
+    <ul>
+        <li>无序列表项 1</li>
+        <li>无序列表项 2</li>
+        <li>无序列表项 3</li>
+    </ul>
+
+    <ol>
+        <li>有序列表项 1</li>
+        <li>有序列表项 2</li>
+        <li>有序列表项 3</li>
+    </ol>
+
+
+    <!-- ========== 四、HTML 表格 ========== -->
+
+    <!--
+    table：定义表格。
+    tr（Table Row）：定义表格行。
+    th（Table Header）：定义表头单元格，默认加粗、居中。
+    td（Table Data）：定义普通数据单元格。
+
+    核心原理：
+    同一个 tr 内的 th / td 横向排列。
+    不同 tr 形成新的行，产生纵向结构。
+    HTML 源码的换行和缩进不决定表格排列方向。
+    -->
+
+    <!-- 3 行 × 2 列：没有设置可见边框。 -->
+    <table>
+        <tr>
+            <th>表头 1</th>
+            <th>表头 2</th>
+        </tr>
+        <tr>
+            <td>单元格 1</td>
+            <td>单元格 2</td>
+        </tr>
+        <tr>
+            <td>单元格 3</td>
+            <td>单元格 4</td>
+        </tr>
+    </table>
+
+    <!-- border="1" 是旧式 HTML 边框属性，现代开发推荐使用 CSS。 -->
+    <table border="1">
+        <tr>
+            <th>表头 1</th>
+            <th>表头 2</th>
+        </tr>
+        <tr>
+            <td>单元格 1</td>
+            <td>单元格 2</td>
+        </tr>
+        <tr>
+            <td>单元格 3</td>
+            <td>单元格 4</td>
+        </tr>
+    </table>
+
+    <!-- 4 行 × 1 列：每个 tr 只有一个单元格，因此形成单列纵向结构。 -->
+    <table class="demo-table">
+        <tr>
+            <th>表头 1</th>
+        </tr>
+        <tr>
+            <th>表头 2</th>
+        </tr>
+        <tr>
+            <td>单元格 1</td>
+        </tr>
+        <tr>
+            <td>单元格 2</td>
+        </tr>
+    </table>
+
+
+    <!-- ========== 五、div、span 与 class ========== -->
+
+    <!--
+    div：无特殊语义的通用容器，默认 display: block（块级显示）。
+    span：无特殊语义的通用容器，默认 display: inline（行内显示）。
+
+    div 默认独占一行，span 默认与其他行内内容排列在同一行。
+    两者的显示方式都可以通过 CSS 的 display 属性修改。
+
+    class：为元素指定类名，多个元素可以共用同一个 class。
+    id：为元素指定唯一标识，同一文档内不应重复。
+    class 和 id 都可用于 CSS 选择元素或 JavaScript 操作 DOM。
+    -->
+
+    <div>
+        <h1>这是一个标题</h1>
+        <p>这是一个段落。</p>
+
+        <!-- div 可以嵌套，形成父子元素的层级关系。 -->
+        <div>
+            <h2>这是一个子标题</h2>
+            <p>这是一个子段落。</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>文章标题</h2>
+        <p>文章内容</p>
+    </div>
+
+    <!-- Emmet：输入 div.nav 或 .nav 后按 Tab，可快速生成带 class="nav" 的 div。 -->
+    <div class="nav"></div>
+
+    <span>这是第 1 个 span 元素</span>
+    <span>这是第 2 个 span 元素</span>
+    <span>这是第 3 个 span 元素</span>
+
+
+    <!-- ========== 六、超链接与 href 属性 ========== -->
+
+    <!--
+    a：定义超链接。
+    href：指定链接目标地址。
+    hreg 是错误拼写，不具有 href 的链接功能。
+
+    即使 href 拼写错误，a 标签内部的文字仍然会显示，
+    因为浏览器显示文字内容并不依赖 href 属性。
+    -->
+
+    <div class="nav">
+        <a hreg="#">错误写法：首页</a>
+
+        <a href="#">首页</a>
+        <a href="#">我的</a>
+        <a href="#">用户</a>
+    </div>
+
+    <!--
+    href="#"：指向当前文档的空片段标识符，通常会跳转到页面顶部。
+    href="#section1"：跳转到当前页面中 id="section1" 的元素。
+    href="https://..."：使用完整 URL 访问其他网页。
+    target="_self"：默认在当前标签页打开。
+    target="_blank"：通常在新标签页打开，也可能打开新窗口。
+    -->
+    <a href="https://www.example.com">普通超链接</a>
+    <br>
+    <a href="https://www.example.com" target="_blank">在新标签页打开</a>
+
+    <h2 id="section1">页面内部跳转目标</h2>
+    <a href="#section1">跳转到指定标题</a>
+
+
+    <!-- ========== 七、图片、路径与 CSS 样式 ========== -->
+
+    <!--
+    img 常用属性：
+    src：图片来源路径。
+    alt：图片替代文本，不是正常显示在图片下方的标题。
+    width / height：图片的显示尺寸。
+
+    图片成功加载时，不会正常显示 alt 文本。
+    图片加载失败时，浏览器可能显示 alt 文本。
+    屏幕阅读器也可以通过 alt 获取图片的文字说明。
+
+    常用路径：
+    image.png           当前 HTML 文件所在目录
+    images/1.png        当前目录下的 images 文件夹
+    ../image.png        上一级目录
+    /images/1.png       网站根路径下的 images 文件夹
+    https://...         完整的网络 URL
+
+    Windows 绝对路径示例：D:\WebProject\images\1.png
+    这属于操作系统文件路径，不建议直接写入网页的 src。
+    -->
+
+    <img src="1.png" alt="示例图片 1" width="200" height="150">
+
+    <!--
+    style 是 HTML 属性，属性值使用 CSS 语法。
+    width：宽度；height：高度；px：CSS 像素单位。
+    同时指定宽高可能改变原始宽高比，导致图片变形。
+    -->
+    <img src="2.png" alt="示例图片 2"
+         style="width: 200px; height: 150px;">
+
+    <!-- border: 2px solid black 表示 2 像素的黑色实线边框。 -->
+    <img src="image.png" alt="示例图片 3"
+         style="width: 300px; height: 200px; border: 2px solid black;">
+
+    <!--
+    figure：将图片与说明文字组织为一个独立内容单元。
+    figcaption：显示图片说明文字。
+    alt 是替代文本；figcaption 是页面中可见的说明文字。
+    -->
+    <figure>
+        <img src="image.png" alt="示例图片 3" width="300">
+        <figcaption>示例图片 3</figcaption>
+    </figure>
+
+
+    <!-- ========== 八、HTML 表单基础 ========== -->
+
+    <!--
+    form：定义表单，用来收集用户输入的数据。
+
+    action：指定数据提交的目标 URL，可以是后端 API 地址。
+    method：指定表单提交使用的 HTTP 方法。
+    GET：数据通常会出现在 URL 查询参数中。
+    POST：数据通常放在 HTTP 请求体中。
+
+    action="#" 仅指向当前页面，不代表连接了后端服务器。
+    真实项目需要后端提供接口，才能处理、验证和保存数据。
+
+    label：为输入控件提供文字说明，并不是表头或文本框。
+    label 的 for 必须与对应控件的 id 一致，才能建立关联。
+    placeholder：输入框为空时的提示文字，不是实际提交的数据。
+    -->
+
+    <!-- 本表单使用 GET，仅提交非敏感练习数据。 -->
+    <form action="#" method="get">
+
+        <!--
+        type="text"：普通文本输入框。
+        id="username"：元素唯一标识。
+        name="username"：提交时的字段名。
+        -->
+        <label for="username">用 户 名：</label>
+        <input type="text" id="username" name="username"
+               placeholder="请输入用户名"><br><br>
+
+        <!--
+        radio：单选按钮。
+        相同 name 的 radio 构成同一个单选组，只能选一个。
+
+        type：规定控件类型。
+        name：指定提交字段名，同时用于 radio 分组。
+        value：指定选中后实际提交的字段值。
+        id：标识当前元素，不直接参与数据提交。
+
+        例如选中“男”，提交的数据为 gender=male。
+        提交的是字段名和值，不是整段 HTML 标签代码。
+        -->
+        <span>性 别：</span>
+
+        <input type="radio" name="gender" value="male" id="male">
+        <label for="male">男</label>
+
+        <input type="radio" name="gender" value="female" id="female">
+        <label for="female">女</label>
+
+        <input type="radio" name="gender" value="other" id="other">
+        <label for="other">其他</label><br><br>
+
+        <!--
+        checkbox：复选框，可以同时选中多个。
+        同名 checkbox 不会互斥，提交时可以产生多个同名字段。
+        例如同时选中阅读和运动：
+        hobby=reading&hobby=sports
+        -->
+        <span>爱 好：</span>
+
+        <input type="checkbox" name="hobby" value="reading" id="reading">
+        <label for="reading">阅读</label>
+
+        <input type="checkbox" name="hobby" value="traveling" id="traveling">
+        <label for="traveling">旅游</label>
+
+        <input type="checkbox" name="hobby" value="sports" id="sports">
+        <label for="sports">运动</label><br><br>
+
+        <!-- submit：提交表单；value 在提交按钮中决定显示的文字。 -->
+        <input type="submit" value="提交">
+    </form>
+
+
+    <!-- ========== 九、radio 属性的对比实验 ========== -->
+
+    <!--
+    情况 1：只有 type="radio"，没有 name。
+    每个按钮都是独立的，可以同时保持选中。
+    它们仍然是 radio，不是 checkbox。
+    没有 name 的控件不会作为字段参与正常表单提交。
+    -->
+    <h3>实验 1：没有 name 的 radio</h3>
+
+    <form>
+        <label><input type="radio">男</label>
+        <label><input type="radio">女</label>
+        <label><input type="radio">其他</label>
+    </form>
+
+    <!--
+    情况 2：radio 有相同 name，但没有 value。
+    可以正常实现单选。
+    但未指定 value 时，选中的 radio 默认提交值为 "on"。
+
+    无论选中男、女还是其他，提交结果都是 gender=on。
+    服务器无法仅根据这个值判断具体选择了哪个选项。
+    -->
+    <h3>实验 2：有 name，但没有 value</h3>
+
+    <form action="#" method="get">
+        <label><input type="radio" name="gender">男</label>
+        <label><input type="radio" name="gender">女</label>
+        <label><input type="radio" name="gender">其他</label>
+
+        <input type="submit" value="提交实验 2">
+    </form>
+
+    <!--
+    情况 3：radio 同时具有 name 和 value。
+    name 负责分组与定义字段名。
+    value 负责区分具体选中了哪个选项。
+    id 负责标识元素，可以关联 label，但不会直接提交。
+
+    选中男：gender=male
+    选中女：gender=female
+    选中其他：gender=other
+
+    没有被选中的 radio 不会提交对应的字段值。
+    -->
+    <h3>实验 3：完整的 radio 属性</h3>
+
+    <form action="#" method="get">
+        <input type="radio" name="gender" value="male" id="test-male">
+        <label for="test-male">男</label>
+
+        <input type="radio" name="gender" value="female" id="test-female">
+        <label for="test-female">女</label>
+
+        <input type="radio" name="gender" value="other" id="test-other">
+        <label for="test-other">其他</label>
+
+        <input type="submit" value="提交实验 3">
+    </form>
+
+
+    <!-- ========== 十、其他 input 类型 ========== -->
+
+    <!--
+    password：密码输入框，只会遮蔽屏幕上的输入内容。
+    遮蔽显示不等于网络传输加密，真实密码应通过 HTTPS 提交。
+    以下仅演示输入控件，没有提交按钮，请勿填写真实密码。
+    -->
+    <label for="password">密 码：</label>
+    <input type="password" id="password" name="password"
+           placeholder="请输入密码"><br><br>
+
+    <!-- email：浏览器会进行基本的邮箱格式校验，但不能代替后端验证。 -->
+    <label for="email">邮 箱：</label>
+    <input type="email" id="email" name="email"
+           placeholder="请输入邮箱"><br><br>
+
+    <!-- number：数字输入控件，min/max/step 可规定数值范围与步长。 -->
+    <label for="age">年 龄：</label>
+    <input type="number" id="age" name="age"
+           min="0" max="120" placeholder="请输入年龄"><br><br>
+
+    <!-- color：颜色选择器，值通常是十六进制颜色格式。 -->
+    <label for="color">颜 色：</label>
+    <input type="color" id="color" name="color"><br><br>
+
+    <!-- date：日期选择器，提交值通常为 YYYY-MM-DD。 -->
+    <label for="date">日 期：</label>
+    <input type="date" id="date" name="date"><br><br>
+
+    <!--
+    file：选择本地文件，选择文件不代表上传成功。
+    实际上传文件通常需要：
+    form 设置 method="post"、enctype="multipart/form-data"，
+    并由后端接口接收文件。
+    -->
+    <label for="file">上 传：</label>
+    <input type="file" id="file" name="file"><br><br>
+
+
+    <!-- ========== 十一、HTML 表单与后端 API 的关系 ========== -->
+
+    <!--
+    假设后端提供了 POST /api/register 接口：
+
+    <form action="/api/register" method="post">
+        <input type="text" name="username">
+        <input type="submit" value="注册">
+    </form>
+
+    浏览器会向 /api/register 发送 POST 请求。
+    对于默认的表单编码方式，输入值以 username=xxx 的形式编码到请求体。
+
+    请求流程：
+    用户输入数据 → 浏览器组织表单数据 → HTTP 请求
+    → 后端 API 接收并验证 → 执行业务逻辑 → 返回响应。
+
+    API 不一定部署在云服务器，也可以运行在本地计算机上。
+    注意：这里只是接口调用原理示例，当前页面没有实际后端。
+    -->
+
+
+    <!-- ========== 十二、核心知识总结 ========== -->
+
+    <!--
+    【HTML 元素和属性】
+
+    1. 标签决定元素的基本类型和语义，例如 a、img、input。
+    2. 属性提供附加信息或配置元素行为，例如 href、src、type。
+    3. 元素内容和属性并不相同：
+       a 内部的文字负责显示，href 负责指定跳转地址。
+    4. HTML 可以容忍部分错误，但能显示不代表写法符合标准。
+
+    【id、class、name、value】
+
+    id：标识一个元素，同一文档内应唯一。
+    class：元素所属的类，可以重复使用。
+    name：表单字段名；对于 radio，还决定单选分组。
+    value：表单控件的值；不同类型的控件有不同的使用方式。
+
+    【表单提交】
+
+    type="radio"：
+        没有 name → 不形成同一个单选组，也不提交该字段。
+        有 name、无 value → 可以单选，选中后默认值为 on。
+        有 name、有 value → 可以单选，并提交指定字段值。
+
+    type="checkbox"：
+        同名复选框可以同时选中，并提交多个同名字段。
+
+    【前端与后端】
+
+    HTML：定义表单与页面结构。
+    CSS：决定页面外观。
+    JavaScript：处理动态交互，也可以主动发送 API 请求。
+    HTTP：客户端和服务器之间传输请求与响应的协议。
+    后端 API：接收、验证、处理数据并返回结果。
+
+    最重要的区别：
+    页面上显示什么 ≠ 表单实际提交什么。
+    元素属性 ≠ 全部都会发送到服务器。
+    浏览器能够解析代码 ≠ 代码一定符合 HTML 标准。
+    -->
+
+</body>
+</html>
